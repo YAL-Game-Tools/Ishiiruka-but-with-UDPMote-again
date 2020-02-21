@@ -124,6 +124,7 @@
     <ClCompile Include="PatchAddEdit.cpp" />
     <ClCompile Include="SoftwareVideoConfigDialog.cpp" />
     <ClCompile Include="TASInputDlg.cpp" />
+    <ClCompile Include="UDPConfigDiag.cpp" />
     <ClCompile Include="UINeedsControllerState.cpp" />
     <ClCompile Include="VideoConfigDiag.cpp" />
     <ClCompile Include="PostProcessingConfigDiag.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="PatchAddEdit.h" />
     <ClInclude Include="SoftwareVideoConfigDialog.h" />
     <ClInclude Include="TASInputDlg.h" />
+    <ClInclude Include="UDPConfigDiag.h" />
     <ClInclude Include="UINeedsControllerState.h" />
     <ClInclude Include="VideoConfigDiag.h" />
     <ClInclude Include="PostProcessingConfigDiag.h" />

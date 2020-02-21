@@ -265,6 +265,9 @@
     <ClCompile Include="DolphinSlider.cpp">
       <Filter>GUI\Widgets</Filter>
     </ClCompile>
+    <ClCompile Include="UDPConfigDiag.cpp">
+      <Filter>GUI\InputConfig</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -488,6 +491,9 @@
     </ClInclude>
     <ClInclude Include="DolphinSlider.h">
       <Filter>GUI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="UDPConfigDiag.h">
+      <Filter>GUI\InputConfig</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

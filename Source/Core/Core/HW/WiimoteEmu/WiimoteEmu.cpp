@@ -28,6 +28,7 @@
 #include "Core/HW/WiimoteEmu/Attachment/Nunchuk.h"
 #include "Core/HW/WiimoteEmu/Attachment/Turntable.h"
 #include "Core/HW/WiimoteEmu/MatrixMath.h"
+#include "Core/UDPTLayer.h"
 #include "Core/HW/WiimoteReal/WiimoteReal.h"
 #include "Core/Movie.h"
 #include "Core/NetPlayClient.h"
@@ -262,6 +263,9 @@ Wiimote::Wiimote(const unsigned int index) : m_index(index), ir_sin(0), ir_cos(1
     m_buttons->controls.emplace_back(new ControllerEmu::Input(named_button, ui_name));
   }
 
+  // udp
+  groups.emplace_back(m_udp = new UDPWrapper(m_index, _trans("UDP Wiimote")));
+
   // ir
   // i18n: IR stands for infrared and refers to the pointer functionality of Wii Remotes
   groups.emplace_back(m_ir = new ControllerEmu::Cursor(_trans("IR")));
@@ -284,7 +288,7 @@ Wiimote::Wiimote(const unsigned int index) : m_index(index), ir_sin(0), ir_cos(1
   // extension
   groups.emplace_back(m_extension = new ControllerEmu::Extension(_trans("Extension")));
   m_extension->attachments.emplace_back(new WiimoteEmu::None(m_reg_ext));
-  m_extension->attachments.emplace_back(new WiimoteEmu::Nunchuk(m_reg_ext));
+  m_extension->attachments.emplace_back(new WiimoteEmu::Nunchuk(m_udp, m_reg_ext));
   m_extension->attachments.emplace_back(new WiimoteEmu::Classic(m_reg_ext));
   m_extension->attachments.emplace_back(new WiimoteEmu::Guitar(m_reg_ext));
   m_extension->attachments.emplace_back(new WiimoteEmu::Drums(m_reg_ext));
@@ -449,6 +453,7 @@ void Wiimote::UpdateButtonsStatus()
     m_sideways_setting->GetValue() ^ sideways_modifier_toggle ^ sideways_modifier_switch;
   m_buttons->GetState(&m_status.buttons.hex, button_bitmasks);
   m_dpad->GetState(&m_status.buttons.hex, is_sideways ? dpad_sideways_bitmasks : dpad_bitmasks);
+  UDPTLayer::GetButtons(m_udp, &m_status.buttons.hex);
 }
 
 void Wiimote::GetButtonData(u8* const data)
@@ -477,6 +482,7 @@ void Wiimote::GetAccelData(u8* const data, const ReportFeatures& rptf)
   EmulateTilt(&m_accel, m_tilt, is_sideways, is_upright);
   EmulateSwing(&m_accel, m_swing, is_sideways, is_upright);
   EmulateShake(&m_accel, m_shake, m_shake_step);
+  UDPTLayer::GetAcceleration(m_udp, &m_accel);
 
   wm_accel& accel = *reinterpret_cast<wm_accel*>(data + rptf.accel);
   wm_buttons& core = *reinterpret_cast<wm_buttons*>(data + rptf.core);
@@ -546,6 +552,7 @@ void Wiimote::GetIRData(u8* const data, bool use_accel)
   LowPassFilter(ir_cos, ncos, 1.0 / 60);
 
   m_ir->GetState(&xx, &yy, &zz, true);
+  UDPTLayer::GetIR(m_udp, &xx, &yy, &zz);
 
   Vertex v[4];
 

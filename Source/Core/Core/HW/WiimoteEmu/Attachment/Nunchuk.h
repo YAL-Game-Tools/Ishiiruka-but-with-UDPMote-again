@@ -7,6 +7,8 @@
 #include <array>
 #include "Core/HW/WiimoteEmu/Attachment/Attachment.h"
 
+class UDPWrapper;
+
 namespace ControllerEmu
 {
 class AnalogStick;
@@ -24,7 +26,7 @@ struct ExtensionReg;
 class Nunchuk : public Attachment
 {
 public:
-  explicit Nunchuk(ExtensionReg& reg);
+  explicit Nunchuk(UDPWrapper* wrp, ExtensionReg& reg);
 
   void GetState(u8* const data) override;
   bool IsButtonPressed() const override;
@@ -62,5 +64,7 @@ private:
   ControllerEmu::AnalogStick* m_stick;
 
   std::array<u8, 3> m_shake_step{};
+
+  UDPWrapper* const m_udpWrap;
 };
 }

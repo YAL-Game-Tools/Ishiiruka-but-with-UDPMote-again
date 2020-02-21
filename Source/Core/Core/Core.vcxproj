@@ -527,6 +527,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="TitleDatabase.h" />
     <ClInclude Include="IOS\VersionInfo.h" />
+    <ClInclude Include="UDPTLayer.h" />
     <ClInclude Include="WiiRoot.h" />
     <ClInclude Include="WiiUtils.h" />
   </ItemGroup>

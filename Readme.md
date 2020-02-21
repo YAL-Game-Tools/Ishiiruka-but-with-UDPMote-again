@@ -1,3 +1,18 @@
+# Ishiiruka, but with UDPMote support (again)
+
+This is the exact same thing as Anthony Calosa's mod ([github](https://github.com/kevlahnota/Ishiiruka), [forum post](https://forums.dolphin-emu.org/Thread-unofficial-udpmote-for-android)), but I adapted it to work with the current version of Ishiiruka because a specific ROM mod required CPU frequency override and also wouldn't boot up on v950.
+
+Much like the original, there is no UI, however! I added an extra INI key that you can define to get a popup box on startup indicating whether all is well. Edit your INI file in `<My Documents>\Dolphin Emulator\Config\WiimoteNew.ini`, like so:
+```ini
+[Wiimote2]
+...the usual stuff in there
+Source = 0
+UDP Wiimote/Port = 4434
+UDP Wiimote/Enable = 1
+UDP Wiimote/ShowMessageBox = 1
+```
+Before you ask, I have no idea how the original code works and also do not have any Android devices on hand to test this with. If it works, that's neat, if it doesn't, my condolences.
+
 # Dolphin - A GameCube and Wii Emulator
 
 [Homepage](https://dolphin-emu.org/) | [Project Site](https://github.com/dolphin-emu/dolphin) | [Forums](https://forums.dolphin-emu.org/) | [Wiki](https://wiki.dolphin-emu.org/) | [Issue Tracker](https://bugs.dolphin-emu.org/projects/emulator/issues) | [Coding Style](https://github.com/dolphin-emu/dolphin/blob/master/Contributing.md) | [Transifex Page](https://www.transifex.com/projects/p/dolphin-emu/)

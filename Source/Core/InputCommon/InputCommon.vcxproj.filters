@@ -110,6 +110,8 @@
     <ClCompile Include="ControlReference\ControlReference.cpp">
       <Filter>ControllerInterface</Filter>
     </ClCompile>
+    <ClCompile Include="UDPWrapper.cpp" />
+    <ClCompile Include="UDPWiimote.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GCAdapter.h" />
@@ -202,6 +204,8 @@
     <ClInclude Include="ControlReference\ControlReference.h">
       <Filter>ControllerInterface</Filter>
     </ClInclude>
+    <ClInclude Include="UDPWiimote.h" />
+    <ClInclude Include="UDPWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
