@@ -161,7 +161,7 @@ void SetWindowSizeAndFitToScreen(wxTopLevelWindow* tlw, wxPoint pos, wxSize size
   default_size.DecTo(screen_geometry.GetSize());
   default_size.IncTo(tlw->GetMinSize());
   if (!default_size.IsFullySpecified())
-    default_size.SetDefaults((unsigned int)wxDisplay(0).GetClientArea().GetSize() / 2);
+    default_size.SetDefaults(wxDisplay((unsigned int)0).GetClientArea().GetSize() / 2);
 
   // If the position we're given doesn't make sense then go with the current position.
   // (Assuming the window was created with wxDefaultPosition then this should be reasonable)
