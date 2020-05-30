@@ -120,6 +120,13 @@ UDPWiimote::UDPWiimote(const std::string& _port, const std::string& name, int _i
       continue;
     }
 
+    //Ong: make sockets reusable in linux
+    #ifdef __linux__
+        bool my_true = 1;
+        setsockopt(sock,SOL_SOCKET,SO_REUSEADDR,&my_true,sizeof(int));
+    #endif
+
+    
     if (bind(sock, p->ai_addr, (int)p->ai_addrlen) == -1)
     {
       close(sock);

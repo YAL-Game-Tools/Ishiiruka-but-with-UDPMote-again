@@ -1,5 +1,7 @@
 add_library(inputcommon
   InputConfig.cpp
+  UDPWiimote.cpp
+  UDPWrapper.cpp
   ControllerEmu/ControllerEmu.cpp
   ControllerEmu/Control/Control.cpp
   ControllerEmu/Control/Input.cpp
@@ -25,6 +27,7 @@ add_library(inputcommon
 
 target_link_libraries(inputcommon PUBLIC
   common
+  wxWidgets::wxWidgets
 )
 
 if(WIN32)

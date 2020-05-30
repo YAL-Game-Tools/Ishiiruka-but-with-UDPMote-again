@@ -17,6 +17,7 @@ add_library(core
   PatchEngine.cpp
   State.cpp
   TitleDatabase.cpp
+  UDPTLayer.h
   WiiRoot.cpp
   WiiUtils.cpp
   Boot/Boot_BS2Emu.cpp

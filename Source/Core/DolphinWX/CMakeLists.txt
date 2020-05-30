@@ -81,6 +81,7 @@ set(SRCS
   VideoConfigDiag.cpp
   WxEventUtils.cpp
   WxUtils.cpp
+  UDPConfigDiag.cpp
 )
 
 set(LIBS
